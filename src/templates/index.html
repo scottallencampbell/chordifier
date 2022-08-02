@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chordifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />   
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icons/favicon.ico') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>    
+  </head>
+  <body>       
+    <div class="container">
+      <div class="logo">
+        <img src="/static/images/logo.png">
+      </div>
+      <form action="/upload" class="dropzone" id="dropzone" method="POST"></form>  
+      <button id="enchordify" class="chordify hidden" onclick="enchordify()">Enchordify</button>  
+      <input type="hidden" id="filename" />
+      <div class="working hidden">
+        <img src="/static/images/working.gif">
+      </div>
+      <div id="output">
+        <div id="waveform" class="hidden"></div>
+        <div id="chords" class="hidden">
+          <div id="current"></div>
+          <div id="strobe"></div>
+          <div id="blind"></div>
+          <div id="reel"></div>
+        </div>
+        <div id="controls" class="hidden">
+          <button id="back" class="chordify" data-action="back"><img src="/static/images/back.png"></button>
+          <button id="play" class="chordify" data-action="play"><p>Play</p><img src="/static/images/play.png"></button>
+          <button id="pause" class="chordify hidden" data-action="pause"><p>Pause</p><img src="/static/images/pause.png"></button>
+          <button ud="forward" class="chordify" data-action="forward"><img src="/static/images/forward.png"></button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

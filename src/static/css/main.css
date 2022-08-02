@@ -1,0 +1,316 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/icon?family=Roboto');
+
+html {
+  display: none;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  text-align: center;
+  background-color: #ffffff; 
+}
+
+.logo {
+  width: 100%;
+  height: 169px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.dropzone {
+  width: 78%;
+  border: 4px dashed #E633BF !important;
+  border-radius: 6px;
+  margin: 0 auto;
+  height: 240px;
+  min-height: 0px !important;
+  position: relative;
+  text-align: center;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+  transition: all .8s;
+  padding: 0 !important;
+}
+
+.dropzone.dz-drag-hover {
+  border: 4px solid #3498db !important;
+}
+
+.dropzone .dz-success-mark {
+  display: none !important;
+}
+
+.dz-message {
+  position: relative;
+}
+
+.dropzone.dz-started .dz-message {
+  display: inline-block !important;
+  width: 120px;
+  border: 1px solid rgba(238, 238, 238, 0.36);
+  border-radius: 30px;
+  height: 120px;
+  margin: 16px;
+  transition: 0.5s;
+}
+
+.dropzone.dz-started .dz-message span.text {
+  display: none;
+}
+
+.dropzone.dz-started .dz-message span.plus {
+  display: block;
+  font-size: 70px;
+  color: #AAA;
+  line-height: 110px;
+}
+
+.dropzone .dz-message {
+  position: relative;
+  margin: 5.2em 0 !important;
+}
+
+.dropzone .dz-message .dz-button {
+    font-weight: bold !important;
+    font-size: 29px !important;
+    color: #333333 !important;
+}
+
+.dropzone .dz-message .dz-button img {
+  width: 50px;
+  display: block;
+  margin: auto;
+  margin-top: 15px;
+}
+
+.dropzone.dz-max-files-reached .dz-message,
+.dropzone.dz-max-files-reached .dz-message img {
+  display: none !important;
+}
+
+.dropzone .dz-preview {
+    margin: 50px !important;
+    transition: .2s all;    
+}
+
+.dropzone .dz-preview .dz-image {
+    display: inline-block !important;
+}
+
+.dropzone .dz-image {
+    background: none !important;
+    border: solid 2px #E633BF;
+}
+
+.dropzone .dz-preview .dz-details .dz-size {
+  margin-top: 8px;
+}
+
+.dropzone .dz-remove {
+  font-size: 14px !important;
+  font-family: Roboto !important;
+  color: #E633BF;
+  font-family: bold;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+button.chordify {
+  transition: box-shadow .2s;
+  background-color: #E633BF;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 15px 0 15px 0;
+  font-size: 20px;
+  border: solid 1px #E633BF;
+  border-radius: 20px;
+  min-width: 200px;
+  margin-top: 50px;
+  cursor: pointer;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);  
+}
+
+button.chordify:hover {
+  box-shadow: 0px 5px 20px rgb(230 51 191);
+}
+
+#output {
+  overflow: hidden;
+  position: relative;
+}
+
+#waveform {
+  transition: opacity 1s;
+  transition-delay: 1s;
+  margin-bottom: 12px;
+}
+
+#chords {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  transition: opacity 1s;
+  transition-delay: 1.5s; 
+  text-align: left;
+}
+
+#chords #current {
+  height: 100px;
+  position: absolute;
+  text-align: left;
+  z-index: 100;
+}
+
+#chords #current div {
+  position: absolute;
+  opacity: 0;   
+}
+
+#chords #current div.active {
+  transition: all 0s;  
+  opacity: 1; 
+  transform: scale(1.15);
+  filter: grayscale(0%);
+}
+
+#chords #current div.decay {
+  transition: all .5s;  
+  transform: scale(1);
+  filter: grayscale(100%) brightness(0);
+}
+
+#chords #current div.no-transition {
+  transition: none !important;
+}
+
+#chords #current img {
+  height: 100px;  
+}
+
+#chords #blind {
+  width: 19px;
+  height: 100px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 50;
+  background-image: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,1), rgba(255,255,255,0));
+}
+
+#reel {
+  xtransition: all 0s linear;
+  height: 100px;
+  position: absolute;
+  text-align: left;
+  top: 0;
+  left: 50px;
+}
+
+#reel.paused {
+  animation-play-state: paused;
+}
+
+#reel div {
+  display: inline;
+  position: absolute;
+  top: 0;
+}
+
+#reel p {
+  display: inline-block;
+}
+
+#reel img {
+  height: 100px;
+  opacity: .3;
+  filter: grayscale(100%);
+}
+
+#strobe {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  border-radius: 90px;
+  z-index: -100;
+  left: -2px;
+  top: 10px;
+  transition: all 1s;  
+  z-index: 0;
+}
+
+#strobe.strobing {
+  animation: strobe .5s forwards;
+}
+
+@keyframes strobe {
+  0% { transform: scale(0); background-color: #E633BF; opacity: 0;}
+  1% { transform: scale(1); opacity: .2;}
+  50% { transform: scale(1.05); opacity: .1;}
+  75% { transform: scale(1.1); opacity: .05;}
+  100% { transform: scale(1.15); opacity: 0;}
+}  
+
+#controls {
+  padding-bottom: 30px;
+}
+
+#controls button {
+  margin: 40px 13px 0 13px;
+  min-width: 10px;
+  padding: 5px;
+  max-height: 40px;
+  height: 40px;
+  font-size: 40px;
+  position: relative;
+  line-height: 50px;
+  padding: 0 5px 0 5px;
+}
+
+#controls button p {
+  padding: 0 4px 0 12px;
+  display: inline;
+  position: relative;
+  top: -6px;
+}
+
+#controls button img {
+  font-size: 34px;
+  padding: 0 5px 0 5px;
+  position: relative;
+}
+
+#controls button {
+  font-size: 18px;
+}
+
+.hidden {
+  display: none;
+}
+
+.collapsed {
+  height: 0;
+  opacity: 0;
+}
+
+.working {
+  display: none;
+  height: 250px;
+}
+
+.working img {
+  height: 250px;
+}
