@@ -1,3 +1,7 @@
+src/uploads
+src/__pycache__
+
+
 src/uploads/amazing-grace.wav
 src/uploads/g-major-chord.wav
 src/uploads/let-it-be-2.wav
