@@ -1,3 +1,4 @@
 uploads/*.wav
 uploads/*.mp3
 __pycache__
+.vercel
