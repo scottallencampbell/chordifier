@@ -39,7 +39,6 @@ def home():
 @app.route('/upload', methods=['POST'])
 def upload():    
     files = request.files    
-    formData = request.files['file']     
     
     for item in files:        
         uploaded_file = files.get(item)  
@@ -51,13 +50,11 @@ def upload():
         
         filename = os.path.join(app.config['UPLOAD_FOLDER'], uploaded_file.filename)
         uploaded_file.save(filename)
-
-        return ''
+        return uploaded_file.filename
 
 @app.route('/uploads/<path:path>')
 def send_upload(path):
     return send_from_directory('uploads', path)
-
 
 @app.route('/analyze', methods=['POST'])
 def analyze_track():
@@ -83,14 +80,16 @@ def analyze_track():
     return jsonify(chords)
 
 @app.route('/analyze/uploaded', methods=['POST'])
-def analyze_track_already_uploaded():    
+def analyze_track_already_uploaded():  
+    print(request.data)  
     data = json.loads(request.data)
-    file = data.get("file",None)
+    file = data.get("file", None)
 
     if file is None:
         return Response('No filename was included', status=400)
     
     filename = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(file))        
+    print(filename)
     chords = analyze(filename)
 
     return jsonify(chords)

@@ -24,8 +24,8 @@ $(document).ready(function () {
             done();
         },
         init: function () {
-            this.on('success', function (file) {
-                receiveFile(file);
+            this.on('success', function (file, response) {
+                receiveFile(response);
             });
 
             this.on('removedfile', function (file) {
@@ -71,7 +71,7 @@ $(document).ready(function () {
 });
 
 const receiveFile = (file) => {
-    $('#filename').val(file.name);
+    $('#filename').val(file);
     $('button#enchordify').delay(500).fadeIn();
 }
 
