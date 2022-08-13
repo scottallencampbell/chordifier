@@ -149,6 +149,8 @@ def analyze(audio_path):
     y, sr = lr.load(audio_path)
     # split track into harmonic and percussive in order to isolate true tonal frequencies
     y_harm, y_perc = lr.effects.hpss(y)
+    # add margin to ^^^^
+    # add filters?
 
     # cqt seems to work better than fourier
     chroma_cq = lr.feature.chroma_cqt(y=y_harm, sr=sr, hop_length=hop_length)
