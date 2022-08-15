@@ -1,0 +1,40 @@
+2022-08-12 16:31:50.439757: wfastcgi.py will restart when files in C:\chordifier\ are changed: .*((\.py)|(\.config))$
+2022-08-12 16:31:50.439757: wfastcgi.py 3.0.0 initialized
+2022-08-12 16:31:52.726739: wfastcgi.py will restart when files in C:\chordifier\ are changed: .*((\.py)|(\.config))$
+2022-08-12 16:31:52.725739: wfastcgi.py will restart when files in C:\chordifier\ are changed: .*((\.py)|(\.config))$
+2022-08-12 16:31:52.726739: wfastcgi.py 3.0.0 initialized
+2022-08-12 16:31:52.726739: wfastcgi.py 3.0.0 initialized
+2022-08-12 16:31:52.737739: wfastcgi.py will restart when files in C:\chordifier\ are changed: .*((\.py)|(\.config))$
+2022-08-12 16:31:52.737739: wfastcgi.py 3.0.0 initialized
+2022-08-12 16:33:05.891474: wfastcgi.py exiting because app.py has changed, matching .*((\.py)|(\.config))$
+2022-08-12 16:33:05.891474: Running on_exit tasks
+2022-08-12 16:33:05.891474: wfastcgi.py exiting because app.py has changed, matching .*((\.py)|(\.config))$
+2022-08-12 16:33:05.891474: Running on_exit tasks
+2022-08-12 16:33:05.891474: wfastcgi.py exiting because app.py has changed, matching .*((\.py)|(\.config))$
+2022-08-12 16:33:05.891474: Running on_exit tasks
+2022-08-12 16:33:05.891474: wfastcgi.py exiting because app.py has changed, matching .*((\.py)|(\.config))$
+2022-08-12 16:33:05.891474: Running on_exit tasks
+2022-08-12 16:33:15.127517: wfastcgi.py will restart when files in C:\chordifier\ are changed: .*((\.py)|(\.config))$
+2022-08-12 16:33:15.128516: wfastcgi.py 3.0.0 initialized
+2022-08-12 16:33:16.951517: wfastcgi.py will restart when files in C:\chordifier\ are changed: .*((\.py)|(\.config))$
+2022-08-12 16:33:16.952516: wfastcgi.py 3.0.0 initialized
+2022-08-12 16:39:52.225899: wfastcgi.py will restart when files in C:\chordifier\ are changed: .*((\.py)|(\.config))$
+2022-08-12 16:39:52.225899: wfastcgi.py 3.0.0 initialized
+2022-08-12 16:39:53.882152: wfastcgi.py will restart when files in C:\chordifier\ are changed: .*((\.py)|(\.config))$
+2022-08-12 16:39:53.882152: wfastcgi.py 3.0.0 initialized
+2022-08-12 17:01:37.154226: wfastcgi.py will restart when files in C:\chordifier\ are changed: .*((\.py)|(\.config))$
+2022-08-12 17:01:37.155210: wfastcgi.py 3.0.0 initialized
+2022-08-12 17:21:24.583063: wfastcgi.py will restart when files in C:\chordifier\ are changed: .*((\.py)|(\.config))$
+2022-08-12 17:21:24.583063: wfastcgi.py 3.0.0 initialized
+2022-08-12 17:32:15.668029: wfastcgi.py will restart when files in C:\chordifier\ are changed: .*((\.py)|(\.config))$
+2022-08-12 17:32:15.668029: wfastcgi.py 3.0.0 initialized
+2022-08-12 17:43:26.236664: wfastcgi.py will restart when files in C:\chordifier\ are changed: .*((\.py)|(\.config))$
+2022-08-12 17:43:26.236664: wfastcgi.py 3.0.0 initialized
+2022-08-12 18:28:49.065476: wfastcgi.py will restart when files in C:\chordifier\ are changed: .*((\.py)|(\.config))$
+2022-08-12 18:28:49.066460: wfastcgi.py 3.0.0 initialized
+2022-08-12 18:40:19.697049: wfastcgi.py will restart when files in C:\chordifier\ are changed: .*((\.py)|(\.config))$
+2022-08-12 18:40:19.697049: wfastcgi.py 3.0.0 initialized
+2022-08-12 19:14:18.426980: wfastcgi.py will restart when files in C:\chordifier\ are changed: .*((\.py)|(\.config))$
+2022-08-12 19:14:18.426980: wfastcgi.py 3.0.0 initialized
+2022-08-12 19:35:46.041627: wfastcgi.py will restart when files in C:\chordifier\ are changed: .*((\.py)|(\.config))$
+2022-08-12 19:35:46.041627: wfastcgi.py 3.0.0 initialized
