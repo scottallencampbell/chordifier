@@ -81,7 +81,7 @@ def analyze_track():
 
 @app.route('/analyze/uploaded', methods=['POST'])
 def analyze_track_already_uploaded():  
-    print(request.data)  
+    
     data = json.loads(request.data)
     file = data.get("file", None)
 
