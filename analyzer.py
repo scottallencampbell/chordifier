@@ -43,7 +43,6 @@ def exp_average(chronogram,hop_length,sr,window_time_sec: np.float=0.5):
     pre_col_exp_average=np.zeros((chronogram.shape[0],1),dtype=np.float)
     k=int(window_time_sec/(hop_length/sr))
     lam=np.exp(-np.log(0.9/0.1+1)/k)#forgeting factor
-    print(lam)
     den=np.ones((chronogram.shape[0],2),dtype=np.float)
     for j in range(chronogram.shape[1]):
         pre_col_exp_average[:,0]=chronogram[:,j]+lam*pre_col_exp_average[:,0]
@@ -183,7 +182,7 @@ def get_raw_chord_progression(chroma, sr, chroma_exp_a, max_reference: np.float 
         chord,chroma_binary[:,segment] = classify_chord(notes,chroma_binary[:,segment])
         chords_aux.append(chord)
 
-    chroma_binary=short_silences_audio(chroma_binary,sr,silence_duration_sec=0.5)
+    chroma_binary=short_silences_audio(chroma_binary,sr,silence_duration_sec=0.1)
 
     for index_ch, ch in enumerate(chords_aux):
         if np.max(chroma_binary[:,index_ch])==True:

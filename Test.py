@@ -29,7 +29,7 @@ def extract_results_chords(chords):
     return Labels, Intervals
 
 wav_fpath=Path("audio_data/Guitar Chords", "Guitar Chords.mp3")
-chords,chords_chroma,chords_chroma_filtered_magnitude,chroma_binary = analyze(str(wav_fpath))
+chords,chords_chroma,chroma_cq_exp_a,chroma_binary = analyze(str(wav_fpath))
 
 labels_fpath=Path("audio_data/Guitar Chords/Labels.txt")
 True_labels, Intervals = extract_true_labels(labels_fpath)
@@ -40,9 +40,8 @@ fig, ax = plt.subplots(nrows=2, sharex=True)
 
 chroma_smooth = scipy.ndimage.median_filter(chords_chroma, size=(1, 9))
 chroma_smooth_norm = chroma_smooth/np.amax(chroma_smooth,axis=0)
-#chroma_smooth_norm=chroma_smooth/np.max(chroma_smooth)
 
-chords_chroma_img=lr.display.specshow(chords_chroma_filtered_magnitude, y_axis='chroma', x_axis='time',ax=ax[0],hop_length=512)
+chords_chroma_img=lr.display.specshow(chroma_smooth_norm, y_axis='chroma', x_axis='time',ax=ax[0],hop_length=512)
 chords_chroma_img2=lr.display.specshow(chroma_binary, y_axis='chroma', x_axis='time',ax=ax[1],hop_length=512)
 fig.colorbar(chords_chroma_img, ax=ax[0])
 fig.colorbar(chords_chroma_img2, ax=ax[1])
