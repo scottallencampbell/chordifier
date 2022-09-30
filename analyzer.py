@@ -69,8 +69,8 @@ def classify_chord(notes):
         return Chord(major_chords[mask], 'major')
     elif mask in minor_chords:
         return Chord(minor_chords[mask], 'minor')
-    elif mask in power_chords:
-        return Chord(power_chords[mask], 'power')
+    #elif mask in power_chords:
+    #    return Chord(power_chords[mask], 'power')
     else:
         return None
 
