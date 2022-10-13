@@ -10,6 +10,10 @@ var skipLength = 2;
 var watchReelInterval;
 var $reel;
 
+if (location.protocol !== "https:") {
+    location.protocol = "https:";
+}
+
 $(document).ready(function () {
 
     Dropzone.options.dropzone = {
