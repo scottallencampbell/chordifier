@@ -16,16 +16,18 @@ from flask_cors import CORS
 from werkzeug.utils import secure_filename
 import dataclasses
 
-# Import analyzer with error handling
-analyze = None
-try:
-    from analyzer import analyze
-except ImportError as e:
-    print(f"Error importing analyzer: {e}")
-    # Don't exit - allow app to start and return error on analyze calls
-except Exception as e:
-    print(f"Unexpected error importing analyzer: {e}")
-    # Don't exit - allow app to start and return error on analyze calls
+# Lazy import analyzer - don't import at module level to avoid crashes
+def get_analyze_function():
+    """Lazy load the analyze function"""
+    try:
+        from analyzer import analyze
+        return analyze
+    except ImportError as e:
+        print(f"Error importing analyzer: {e}")
+        return None
+    except Exception as e:
+        print(f"Unexpected error importing analyzer: {e}")
+        return None
 
 
 class EnhancedJSONEncoder(json.JSONEncoder):
@@ -36,7 +38,12 @@ class EnhancedJSONEncoder(json.JSONEncoder):
 
 
 app = Flask(__name__)
-CORS(app)  # Initialize CORS
+try:
+    CORS(app)  # Initialize CORS
+except Exception as e:
+    import traceback
+    print(f"Warning: Failed to initialize CORS: {e}")
+    print(traceback.format_exc())
 
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config["UPLOAD_EXTENSIONS"] = [".wav", ".mp3"]
@@ -48,9 +55,12 @@ app.config["JSONIFY_PRETTYPRINT_REGULAR"] = True
 app.config["MAX_CONTENT_LENGTH"] = 50 * 1000 * 1000
 
 # Create upload directory if it doesn't exist
-upload_folder = app.config["UPLOAD_FOLDER"]
-if not os.path.exists(upload_folder):
-    os.makedirs(upload_folder, exist_ok=True)
+try:
+    upload_folder = app.config["UPLOAD_FOLDER"]
+    if not os.path.exists(upload_folder):
+        os.makedirs(upload_folder, exist_ok=True)
+except Exception as e:
+    print(f"Warning: Failed to create upload folder: {e}")
 
 
 def allowed_file(filename):
@@ -127,10 +137,11 @@ def analyze_track():
         )
         file.save(filename)
 
-        if analyze is None:
+        analyze_func = get_analyze_function()
+        if analyze_func is None:
             return jsonify({"error": "Analyzer module not available"}), 500
 
-        chords = analyze(filename)
+        chords = analyze_func(filename)
 
         # Clean up the temporary file
         if os.path.exists(filename):
@@ -161,10 +172,11 @@ def analyze_track_already_uploaded():
         if not os.path.exists(filename):
             return Response(f"File not found: {filename}", status=404)
 
-        if analyze is None:
+        analyze_func = get_analyze_function()
+        if analyze_func is None:
             return jsonify({"error": "Analyzer module not available"}), 500
 
-        chords = analyze(filename)
+        chords = analyze_func(filename)
 
         return jsonify(chords)
     except Exception as e:
