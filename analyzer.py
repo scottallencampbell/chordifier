@@ -1,8 +1,21 @@
-import librosa as lr
-import librosa.display as lrd
+import os
 import sys
 import numpy as np
 from dataclasses import dataclass
+
+# Configure librosa to prefer audioread backend (no system libraries needed)
+# This is important for serverless environments
+os.environ.setdefault('LIBROSA_CACHE_DIR', '/tmp/librosa_cache')
+
+try:
+    import librosa as lr
+    import librosa.display as lrd
+except ImportError as e:
+    print(f"CRITICAL: Failed to import librosa: {e}")
+    raise
+except Exception as e:
+    print(f"CRITICAL: Unexpected error importing librosa: {e}")
+    raise
 
 @dataclass
 class Chord:
@@ -146,7 +159,9 @@ def refine_chord_progression(chords):
     return collapsed
 
 def analyze(audio_path):
-    y, sr = lr.load(audio_path)
+    # Use audioread backend which doesn't require system libraries
+    # This is important for serverless environments like Vercel
+    y, sr = lr.load(audio_path, sr=None, mono=True)
     # split track into harmonic and percussive in order to isolate true tonal frequencies
     y_harm, y_perc = lr.effects.hpss(y)
     # add margin to ^^^^
