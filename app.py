@@ -12,18 +12,24 @@ class EnhancedJSONEncoder(json.JSONEncoder):
             return dataclasses.asdict(o)
         return super().default(o)
 
-def allowed_file(filename):
-    return '.' in filename and \
-        filename.rsplit('.', 1)[1].lower() in app.config['UPLOAD_EXTENSIONS'] 
-
 app = Flask(__name__)
+CORS(app)  # Initialize CORS
 
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.config['UPLOAD_EXTENSIONS'] = ['.wav', '.mp3']
-app.config['UPLOAD_FOLDER'] = './uploads'
+# Use /tmp for serverless environments (Vercel), fallback to ./uploads for local
+app.config['UPLOAD_FOLDER'] = os.environ.get('UPLOAD_FOLDER', '/tmp' if os.path.exists('/tmp') else './uploads')
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 app.config['MAX_CONTENT_LENGTH'] = 50 * 1000 * 1000
 
+# Create upload directory if it doesn't exist
+upload_folder = app.config['UPLOAD_FOLDER']
+if not os.path.exists(upload_folder):
+    os.makedirs(upload_folder, exist_ok=True)
+
+def allowed_file(filename):
+    return '.' in filename and \
+        filename.rsplit('.', 1)[1].lower() in app.config['UPLOAD_EXTENSIONS'] 
 
 @app.route('/')
 def home():
@@ -32,9 +38,6 @@ def home():
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'icons/favicon.ico', mimetype='image/vnd.microsoft.icon')
-
-def home():
-    return render_template('index.html')
 
 @app.route('/upload', methods=['POST'])
 def upload():    
@@ -54,7 +57,7 @@ def upload():
 
 @app.route('/uploads/<path:path>')
 def send_upload(path):
-    return send_from_directory('uploads', path)
+    return send_from_directory(app.config['UPLOAD_FOLDER'], path)
 
 @app.route('/analyze', methods=['POST'])
 def analyze_track():
