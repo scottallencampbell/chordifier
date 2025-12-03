@@ -16,11 +16,13 @@ from flask_cors import CORS
 from werkzeug.utils import secure_filename
 import dataclasses
 
+
 # Lazy import analyzer - don't import at module level to avoid crashes
 def get_analyze_function():
     """Lazy load the analyze function"""
     try:
         from analyzer import analyze
+
         return analyze
     except ImportError as e:
         print(f"Error importing analyzer: {e}")
@@ -42,6 +44,7 @@ try:
     CORS(app)  # Initialize CORS
 except Exception as e:
     import traceback
+
     print(f"Warning: Failed to initialize CORS: {e}")
     print(traceback.format_exc())
 
