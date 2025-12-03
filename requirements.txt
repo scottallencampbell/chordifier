@@ -1,6 +1,6 @@
 appdirs==1.4.4
 asttokens==2.0.5
-audioread==2.1.9
+audioread==3.0.0
 backcall==0.2.0
 certifi==2022.5.18.1
 cffi==1.15.0
@@ -46,7 +46,7 @@ Pygments==2.12.0
 pyjion==1.2.6
 pyparsing==3.0.9
 python-dateutil==2.8.2
-pywin32==304
+# pywin32==304  # Windows-only, not needed on Vercel
 pyzmq==23.1.0
 requests==2.28.0
 resampy==0.2.2
