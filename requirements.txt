@@ -43,7 +43,6 @@ psutil==5.9.1
 pure-eval==0.2.2
 pycparser==2.21
 Pygments==2.12.0
-pyjion==1.2.6
 pyparsing==3.0.9
 python-dateutil==2.8.2
 # pywin32==304  # Windows-only, not needed on Vercel
