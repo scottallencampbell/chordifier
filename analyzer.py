@@ -9,7 +9,6 @@ os.environ.setdefault("LIBROSA_CACHE_DIR", "/tmp/librosa_cache")
 
 try:
     import librosa as lr
-    import librosa.display as lrd
 except ImportError as e:
     print(f"CRITICAL: Failed to import librosa: {e}")
     raise
@@ -95,6 +94,9 @@ def classify_chord(notes):
 
 
 def collapse_chord_progression(chords):
+    if not chords:
+        return []
+
     collapsed = [chords[0]]
 
     for i, chord in enumerate(chords[1:]):
