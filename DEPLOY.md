@@ -4,7 +4,11 @@ Chordifier runs on **Azure Container Apps** (consumption plan, scale-to-zero) �
 free for portfolio-level traffic under the always-free monthly grant
 (180k vCPU-seconds, 360k GiB-seconds, 2M requests).
 
-- **Live URL:** https://chordifier-prod-web.mangobush-1c047d72.eastus2.azurecontainerapps.io
+- **Live URL:** https://chordifier.pro (custom domain; default URL
+  https://chordifier-prod-web.mangobush-1c047d72.eastus2.azurecontainerapps.io)
+- **DNS:** chordifier.pro is at Porkbun — apex A record → 20.80.209.150
+  (environment static IP) + TXT `asuid` → domain verification ID. TLS is a
+  free auto-renewing Azure managed certificate.
 - **Subscription:** Pico (info@bypico.com)
 - **Resources:** resource group `chordifier-rg` (eastus2) → environment
   `chordifier-env` (logging disabled) → app `chordifier-prod-web`
